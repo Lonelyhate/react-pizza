@@ -1,6 +1,8 @@
 import React from "react";
-import Categories from "./components/Categories/Categories";
 import Header from "./components/Header/Header";
+import { Route, Routes } from 'react-router-dom';
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
 
 
 function App() {
@@ -9,18 +11,10 @@ function App() {
         <div className="wrapper">
             <Header/>
             <div className="content">
-                <div className="container">
-                    <div className="content__top">
-                        <Categories items={[
-                            'Все',
-                            'Мясные',
-                            'Вегетарианская',
-                            'Гриль',
-                            'Острые',
-                            'Закрытые'
-                        ]}/>
-                    </div>
-                </div>
+               <Routes>
+                   <Route path='/' element={<Home/>}/>
+                   <Route path='/cart' element={<Cart/>}/>
+               </Routes>
             </div>
         </div>
     );
