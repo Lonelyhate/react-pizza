@@ -1,4 +1,5 @@
 import React from 'react';
+import './SortPopup.scss'
 
 const SortPopup = ({ items }) => {
     const [visablePopup, setVisablePopup] = React.useState(false);
@@ -10,9 +11,10 @@ const SortPopup = ({ items }) => {
     };
 
     const onSelectItem = (index) => {
-        setActiveItem(index)
-        setVisablePopup(false)
-    }
+        setActiveItem(index);
+        setVisablePopup(false);
+    };
+
     const handleOutsideClock = (e) => {
         if (!e.path.includes(sortRef.current)) {
             setVisablePopup(false);
@@ -26,7 +28,8 @@ const SortPopup = ({ items }) => {
     return (
         <div ref={sortRef} className="sort">
             <div className="sort__label">
-                <svg className={visablePopup == true ? 'rotated' : ''}
+                <svg
+                    className={visablePopup == true ? 'rotated' : ''}
                     width="10"
                     height="6"
                     viewBox="0 0 10 6"
@@ -44,7 +47,10 @@ const SortPopup = ({ items }) => {
                 <div className="sort__popup">
                     <ul>
                         {items.map((name, index) => (
-                            <li onClick={() => onSelectItem(index)} className={index === activeItem ? 'active' : ''} key={name}>
+                            <li
+                                onClick={() => onSelectItem(index)}
+                                className={index === activeItem ? 'active' : ''}
+                                key={name}>
                                 {name}
                             </li>
                         ))}
