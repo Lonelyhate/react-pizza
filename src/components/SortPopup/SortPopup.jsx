@@ -1,7 +1,7 @@
 import React from 'react';
-import './SortPopup.scss'
+import './SortPopup.scss';
 
-const SortPopup = ({ items }) => {
+const SortPopup = React.memo(({ items }) => {
     const [visablePopup, setVisablePopup] = React.useState(false);
     const [activeItem, setActiveItem] = React.useState(0);
     const sortRef = React.useRef();
@@ -59,6 +59,6 @@ const SortPopup = ({ items }) => {
             )}
         </div>
     );
-};
+});
 
 export default SortPopup;
