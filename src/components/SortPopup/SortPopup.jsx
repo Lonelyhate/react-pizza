@@ -1,18 +1,17 @@
 import React from 'react';
 import './SortPopup.scss';
 
-const SortPopup = React.memo(({ items }) => {
+const SortPopup = React.memo(({ items, onClickSortType, activeSortType }) => {
     const [visablePopup, setVisablePopup] = React.useState(false);
-    const [activeItem, setActiveItem] = React.useState(0);
     const sortRef = React.useRef();
 
     const toggleVisablePopup = () => {
         setVisablePopup(!visablePopup);
     };
 
-    const onSelectItem = (index) => {
-        setActiveItem(index);
+    const onSelectItem = (type) => {
         setVisablePopup(false);
+        onClickSortType(type)
     };
 
     const handleOutsideClock = (e) => {
@@ -41,15 +40,15 @@ const SortPopup = React.memo(({ items }) => {
                     />
                 </svg>
                 <b>Сортировка по:</b>
-                <span onClick={toggleVisablePopup}>{items[activeItem].name}</span>
+                <span onClick={toggleVisablePopup}>{items.find((obj) => obj.type === activeSortType).name}</span>
             </div>
             {visablePopup && (
                 <div className="sort__popup">
                     <ul>
                         {items.map((obj, index) => (
                             <li
-                                onClick={() => onSelectItem(index)}
-                                className={index === activeItem ? 'active' : ''}
+                                onClick={() => onSelectItem(obj.type)}
+                                className={obj.type === activeSortType ? 'active' : ''}
                                 key={obj.name}>
                                 {obj.name}
                             </li>
