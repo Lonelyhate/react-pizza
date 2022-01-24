@@ -1,11 +1,10 @@
 import React from "react";
 import classNames from 'classnames'
 
-const Button = (props) => {
-
+const Button = ({children, className, onClick}) => {
     return (
-        <button className={classNames('button', props.className)}>
-            {props.children}
+        <button onClick={onClick} className={classNames('button', className)}>
+            {children}
         </button>
     )
 };
